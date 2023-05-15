@@ -1,0 +1,52 @@
+name: 'build-test'
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    container:
+      image: johnknaack/io.naq.github.chromedriver.action:latest
+
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        node-version: [18.x]
+        chrome-version: [latest]
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install Chrome # and Chromedriver
+      run: |
+        ./bin/setup-chrome.sh ${{ matrix.os }}
+        ./bin/setup-lsof.sh ${{ matrix.os }}
+#        ./bin/setup-chromedriver.sh ${{ matrix.os }}
+
+    - name: Setup Env
+      run: |
+        ./bin/setup-env.sh ${{ matrix.os }}
+
+    - name: Run tests
+      run: |
+        npm test
+    
+    - name: Save output
+      if: ${{ !env.ACT }}
+      uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        path: ./output/*.*

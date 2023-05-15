@@ -1,0 +1,3 @@
+-P ubuntu-latest=johnknaack/io.naq.github.chromedriver.action:latest -e ACT=true
+--pull=false
+--container-architecture linux/amd64

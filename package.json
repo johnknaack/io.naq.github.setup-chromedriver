@@ -1,0 +1,31 @@
+{
+  "name": "io.naq.github.chromedriver.action",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "act": "ACT=TRUE act",
+    "test": "npm run start & npm run wdio && npm run output && npm run stop",
+    "build-image": "docker build --platform linux/amd64 -t johnknaack/io.naq.github.chromedriver.action:latest .",
+    "push-image": "docker push johnknaack/io.naq.github.chromedriver.action:latest",
+    "start": "http-server -p 8080 -c-1 ./examples/page",
+    "wdio": "wdio run ./wdio.conf.js",
+    "stop": "lsof -ti :8080 | xargs kill -9",
+    "output": "command -v kitten >/dev/null && kitten icat ./output/ss.png || echo 'kitten not found, skipping output'"
+  },
+  "author": "john@naq.io",
+  "license": "ISC",
+  "devDependencies": {
+    "@wdio/cli": "^8.10.0",
+    "@wdio/local-runner": "^8.10.0",
+    "@wdio/mocha-framework": "^8.10.0",
+    "@wdio/spec-reporter": "^8.10.0",
+    "chai": "^4.3.7",
+    "chromedriver": "^113.0.0",
+    "http-server": "^14.1.1",
+    "mocha": "^10.2.0",
+    "wdio-chromedriver-service": "^8.1.1",
+    "webdriverio": "^8.10.0"
+  }
+}
