@@ -17,42 +17,20 @@ export const config = {
         browserName: 'chrome',
         'goog:chromeOptions': {
             args: [
+                // Required for start chromedriver
                 '--no-sandbox',
                 '--disable-gpu',
-                '--load-extension=./examples/extension/',
+                '--load-extension=./extension/',
                 '--window-size=1920,1080',
                 '--headless=new',
 
+                // Required to load browser with extensions
+                '--disable-dev-shm-usage',
+                '--disable-software-rasterizer',
+                '--disable-features=VizDisplayCompositor',
 
-
-
-                // '--disable-dev-shm-usage',
-                // '--remote-debugging-port=9222',
-                // '--remote-debugging-address=0.0.0.0',
-                // '--disable-software-rasterizer',
-                // '--disable-features=VizDisplayCompositor',
-
-                // "--webview-enable-modern-cookie-same-site",
-                // "--disable-cookie-encryption",
-                // "--enable-automation",
-                // "--ignore-certificate-errors",
-
-                // "--disable-web-security",
-                // "--x-frame-options=SAMEORIGIN",
-                // "–-allow-file-access-from-files",
-                // "--enable-allow-all-cookies",
-                // "--enable-experimental-cookie-features",
-                // "--disable-features=IsolateOrigins,site-per-process",
-                // "--access-control-allow-origin",
-                // "--access-control-allow-methods",
-                // "--access-control-allow-headers",
-                // "--access-control-allow-credentials",
-
-                // "--disable-infobars",
-                // "--disable-setuid-sandbox",
-                // "--allow-insecure-localhost",
-
-                // "--disable-site-isolation-trials",
+                // Required for linkedin to load with extensions
+                "--access-control-allow-origin",
             ]
         }
     }],

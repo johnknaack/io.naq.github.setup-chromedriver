@@ -14,16 +14,17 @@ runs:
   using: 'composite'
   steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       with:
         node-version: ${{ inputs.node-version }}
         cache: 'npm'
-    - run: ./bin/setup-chrome.sh ${{ inputs.os }}
+    - run: ${{ github.action_path }}/bin/setup-chrome.sh ${{ inputs.os }}
       shell: bash
-    - run: ./bin/setup-lsof.sh ${{ inputs.os }}
+    - run: ${{ github.action_path }}/bin/setup-lsof.sh ${{ inputs.os }}
       shell: bash
-#   - run:./bin/setup-chromedriver.sh ${{ inputs.os }}
-    - run: ./bin/setup-env.sh ${{ inputs.os }}
+#   - run: ${{ github.action_path }}/bin/setup-chromedriver.sh ${{ inputs.os }}
+#     shell: bash
+    - run: ${{ github.action_path }}/bin/setup-env.sh ${{ inputs.os }}
       shell: bash
 runs.post:
   using: 'composite'
