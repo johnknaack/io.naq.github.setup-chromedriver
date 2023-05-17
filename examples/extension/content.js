@@ -52,7 +52,7 @@ function addExampleBanner() {
 
   document.body.appendChild(exampleBanner);
 
-  let timeRemaining = 10;
+  let timeRemaining = 30;
   const countdown = setInterval(() => {
     timeRemaining -= 1;
     closeButton.innerText = `Close (${timeRemaining})`;

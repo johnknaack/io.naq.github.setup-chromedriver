@@ -12,7 +12,7 @@
     "start": "http-server -p 8080 -c-1 ./examples/page",
     "wdio": "wdio run ./wdio.conf.js",
     "stop": "lsof -ti :8080 | xargs kill -9",
-    "output": "command -v kitten >/dev/null && kitten icat ./output/ss.png || echo 'kitten not found, skipping output'"
+    "output": "command -v kitten >/dev/null && kitten icat ./output/*.png || echo 'kitten not found, skipping output'"
   },
   "author": "john@naq.io",
   "license": "ISC",

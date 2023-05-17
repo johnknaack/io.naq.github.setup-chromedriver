@@ -24,7 +24,7 @@ export const config = {
                 '--remote-debugging-address=0.0.0.0',
                 '--disable-software-rasterizer',
                 '--disable-features=VizDisplayCompositor',
-                "--load-extension=./pkg_chrome_ext_qa",
+                '--load-extension=./examples/extension/',
 
                 "--webview-enable-modern-cookie-same-site",
                 "--disable-cookie-encryption",
