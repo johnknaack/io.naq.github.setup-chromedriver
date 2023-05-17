@@ -19,7 +19,7 @@ jobs:
       matrix:
         os: [ ubuntu-latest ]
         node-version: [18.x]
-        chrome-version: [latest]
+        chrome-version: [latest] # TODO Pass to scripts
 
     steps:
     - uses: actions/checkout@v3
@@ -29,9 +29,3 @@ jobs:
       run: |
         npm test
     
-    - name: Save output
-      if: ${{ !env.ACT }}
-      uses: actions/upload-artifact@v3
-      with:
-        name: my-artifact
-        path: ./output/*.*
