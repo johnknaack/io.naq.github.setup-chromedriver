@@ -7,6 +7,7 @@
   "scripts": {
     "act": "ACT=TRUE act",
     "test": "npm run start & npm run wdio && npm run output && npm run stop",
+    "test-headed": "WITH_HEAD=TRUE npm run test",
     "build-image": "docker build --platform linux/amd64 -t johnknaack/io.naq.github.chromedriver.action:latest .",
     "push-image": "docker push johnknaack/io.naq.github.chromedriver.action:latest",
     "start": "http-server -p 8080 -c-1 ./examples/page",

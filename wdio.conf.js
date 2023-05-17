@@ -1,9 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-function sanitizeFilename(filename) {
-    return filename.replace(/[<>:"\/\\|?*]/g, '_');
-}
+const sanitizeFilename = (filename) => filename.replace(/[<>:"\/\\|?*]/g, '_');
 
 export const config = {
     runner: 'local',
@@ -17,12 +15,8 @@ export const config = {
         browserName: 'chrome',
         'goog:chromeOptions': {
             args: [
-                // Required for start chromedriver
-                '--no-sandbox',
-                '--disable-gpu',
-                '--load-extension=./extension/',
+                '--load-extension=./examples/extension/',
                 '--window-size=1920,1080',
-                '--headless=new',
 
                 // Required to load browser with extensions
                 '--disable-dev-shm-usage',
@@ -31,7 +25,12 @@ export const config = {
 
                 // Required for linkedin to load with extensions
                 "--access-control-allow-origin",
-            ]
+            ].concat(process.env.WITH_HEAD ? [] : [
+                // Required for start chromedriver headless
+                '--headless=new',
+                '--no-sandbox',
+                '--disable-gpu',
+            ])
         }
     }],
     logLevel: 'info',
