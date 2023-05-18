@@ -18,13 +18,13 @@ runs:
       with:
         node-version: ${{ inputs.node-version }}
         cache: 'npm'
-    - run: ${{ github.action_path }}/bin/setup-chrome.sh ${{ inputs.os }}
+    - run: ${GITHUB_ACTION_PATH}/bin/setup-chrome.sh ${{ inputs.os }}
       shell: bash
-    - run: ${{ github.action_path }}/bin/setup-lsof.sh ${{ inputs.os }}
+    - run: ${GITHUB_ACTION_PATH}/bin/setup-lsof.sh ${{ inputs.os }}
       shell: bash
-#   - run: ${{ github.action_path }}/bin/setup-chromedriver.sh ${{ inputs.os }}
+#   - run: ${GITHUB_ACTION_PATH}/bin/setup-chromedriver.sh ${{ inputs.os }}
 #     shell: bash
-    - run: ${{ github.action_path }}/bin/setup-env.sh ${{ inputs.os }}
+    - run: ${GITHUB_ACTION_PATH}/bin/setup-env.sh ${{ inputs.os }}
       shell: bash
 runs.post:
   using: 'composite'
