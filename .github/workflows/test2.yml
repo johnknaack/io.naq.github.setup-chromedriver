@@ -1,0 +1,36 @@
+name: 'build-test'
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    container:
+      image: johnknaack/io.naq.github.chromedriver.action:latest
+
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        node-version: [18.x]
+        chrome-version: [latest] # TODO Pass to scripts
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ./
+
+    - name: Run tests
+      run: |
+        npm test
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: output
+        path: ./output/*.*
+    
